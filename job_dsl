@@ -1,0 +1,18 @@
+job('DSL-Tutorial-1-Test') {
+    scm {
+        git('git://github.com/jgritman/aws-sdk-test.git')
+    }
+    triggers {
+        scm('*/20 * * * *')
+    }
+    steps {
+        maven('-e clean test')
+    }
+}
+
+job("Test-job-2") {
+  using 'template-job'
+  scm {
+        git('git://github.com/jgritman/aws-sdk-test.git')
+    }
+}
